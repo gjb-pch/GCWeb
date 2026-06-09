@@ -31,7 +31,7 @@ jobs:
         id: ref_name
         uses: actions/github-script@v3
         with:
-          github-token: ${{ secrets.my_token }}
+          github-token: ${{ github.token }}
           result-encoding: string
           # act use "\" and githbu use "/"
           script: |
@@ -40,7 +40,7 @@ jobs:
         id: ref_tags
         uses: actions/github-script@v3
         with:
-          github-token: ${{ secrets.my_token }}
+          github-token: ${{ github.token }}
           result-encoding: string
           # act use "\" and githbu use "/"
           script: |
@@ -138,7 +138,7 @@ jobs:
           ref_name: ${{ steps.ref_name.outputs.result }}
           is_tags: ${{ steps.ref_tags.outputs.result }}
         with:
-          github-token: ${{ secrets.my_token }}
+          github-token: ${{ github.token }}
           script: |
             github.repos.createRelease({
               owner: context.repo.owner,
@@ -183,7 +183,7 @@ jobs:
           ref_name: ${{ steps.ref_name.outputs.result }}
           is_tags: ${{ steps.ref_tags.outputs.result }}
         with:
-          github-token: ${{ secrets.my_token }}
+          github-token: ${{ github.token }}
           script: |
             github.repos.createRelease({
               owner: context.repo.owner,
@@ -226,7 +226,7 @@ jobs:
           ref_name: ${{ steps.ref_name.outputs.result }}-gcweb
           is_tags: ${{ steps.ref_tags.outputs.result }}
         with:
-          github-token: ${{ secrets.my_token }}
+          github-token: ${{ github.token }}
           script: |
             github.repos.createRelease({
               owner: context.repo.owner,
@@ -286,7 +286,7 @@ jobs:
           is_tags: ${{ steps.ref_tags.outputs.result }}
         if: ${{ env.is_tags != '' }}
         with:
-          github-token: ${{ secrets.my_token }}
+          github-token: ${{ github.token }}
           script: |
             github.repos.createRelease({
               owner: context.repo.owner,
@@ -304,7 +304,7 @@ jobs:
         env:
           repo: ${{ env.REPO_GCWEB }}
         with:
-          github-token: ${{ secrets.my_token }}
+          github-token: ${{ github.token }}
           script: |
             github.repos.requestPagesBuild({
               owner: context.repo.owner,
